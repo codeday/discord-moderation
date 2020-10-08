@@ -1,0 +1,15 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model UserWarning {
+  id          Int         @id @default(autoincrement())
+  userId      String
+  createdAt   DateTime
+  points      Int
+}
