@@ -17,7 +17,7 @@ export default async function checkIsAdult(url: string): Promise<boolean> {
   if (!cache.has(hostname)) {
     try {
       const request = `${API_BASE}?apiKey=${config.categorization.apiKey}&domainName=${encodeURIComponent(hostname)}`;
-      const result = await fetch(request, { timeout: 2000 });
+      const result = await fetch(request, { timeout: 2500 });
       const { categories } = await result.json();
       const isAdult = categories.includes('Adult');
 
