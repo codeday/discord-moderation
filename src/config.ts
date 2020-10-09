@@ -13,6 +13,10 @@ const config = {
     logChannel: <string>process.env.DISCORD_LOG_CHANNEL,
     ignoreRoles: (<string>process.env.DISCORD_IGNORE_ROLES).split(','),
   },
+  syslog: {
+    host: process.env.SYSLOG_HOST,
+    port: Number.parseInt(<string>process.env.SYSLOG_PORT, 10),
+  },
   sightEngine: {
     user: <string>process.env.SIGHTENGINE_USER,
     secret: <string>process.env.SIGHTENGINE_SECRET,

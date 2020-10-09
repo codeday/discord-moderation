@@ -16,6 +16,7 @@
     "@prisma/client": "^2.4.1",
     "@types/bad-words": "^3.0.0",
     "@types/lru-cache": "^5.1.0",
+    "@types/syslog-client": "^1.1.1",
     "@types/url-parse": "^1.4.3",
     "bad-words": "^3.0.3",
     "class-validator": "^0.12.2",
@@ -26,6 +27,7 @@
     "lru-cache": "^6.0.0",
     "node-fetch": "^2.6.0",
     "reflect-metadata": "^0.1.13",
+    "syslog-client": "^1.1.1",
     "type-graphql": "^1.0.0-rc.3",
     "unhomoglyph": "^1.0.6",
     "url-parse": "^1.4.7"
