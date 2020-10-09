@@ -19,7 +19,7 @@
     "@types/url-parse": "^1.4.3",
     "bad-words": "^3.0.3",
     "class-validator": "^0.12.2",
-    "discord.js": "^12.3.0",
+    "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "get-urls": "^10.0.0",

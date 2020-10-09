@@ -6,10 +6,12 @@ loadEnv();
 const config = {
   debug: process.env.NODE_ENV !== 'production',
   supportEmail: process.env.SUPPORT_EMAIL,
+  imageExtensions: ['gif', 'jpg', 'jpeg', 'png', 'webp'],
   discord: {
     botToken: <string>process.env.DISCORD_BOT_TOKEN,
-    logGuild: <string>process.env.DISCORD_LOG_GUILD,
+    guild: <string>process.env.DISCORD_GUILD,
     logChannel: <string>process.env.DISCORD_LOG_CHANNEL,
+    ignoreRoles: (<string>process.env.DISCORD_IGNORE_ROLES).split(','),
   },
   sightEngine: {
     user: <string>process.env.SIGHTENGINE_USER,
