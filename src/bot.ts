@@ -11,6 +11,11 @@ const prisma = new PrismaClient();
 async function processMessage(m: Message, isEdit: boolean): Promise<void> {
   logMessage(m, isEdit ? 'EDIT' : 'CREATE');
 
+  // Don't process messages from other guilds
+  if (m.guild?.id && m.guild.id !== config.discord.guild) {
+    return;
+  }
+
   // Don't process our own messages
   if (m.author.id === m.client.user?.id) {
     return;

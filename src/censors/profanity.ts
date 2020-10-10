@@ -4,8 +4,10 @@ import Filter from 'bad-words';
 import config from '../config';
 import { offensive, adult } from '../lib/swears';
 
-const filterOffensive = new Filter({ list: offensive });
-const filterAdult = new Filter({ list: adult });
+const filterOffensive = new Filter({ emptyList: true });
+const filterAdult = new Filter({ emptyList: true });
+filterOffensive.addWords(...offensive);
+filterAdult.addWords(...adult);
 
 export default async function censorText(m: Message): Promise<number | boolean> {
   const effectiveContent = unhomoglyph(m.content)
