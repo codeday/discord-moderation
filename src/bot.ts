@@ -9,20 +9,25 @@ import {
 const prisma = new PrismaClient();
 
 async function processMessage(m: Message, isEdit: boolean): Promise<void> {
-  logMessage(m, isEdit ? 'EDIT' : 'CREATE');
+  if (config.debug) console.log(m.content);
 
   // Don't process messages from other guilds
   if (m.guild?.id && m.guild.id !== config.discord.guild) {
+    if (config.debug) console.log(' -> Wrong guild');
     return;
   }
 
+  logMessage(m, isEdit ? 'EDIT' : 'CREATE');
+
   // Don't process our own messages
   if (m.author.id === m.client.user?.id) {
+    if (config.debug) console.log(' -> Skip own message');
     return;
   }
 
   // Don't process messages from those on the allow-list
   if (m?.member?.roles.cache.find((r) => config.discord.ignoreRoles.includes(r.id))) {
+    if (config.debug) console.log(' -> Role exempt');
     return;
   }
 
@@ -73,6 +78,7 @@ async function processMessage(m: Message, isEdit: boolean): Promise<void> {
 }
 
 export default function Bot(): void {
+  if (config.debug) console.log('config', JSON.stringify(config));
   const discord = new Discord({ partials: ['MESSAGE'] });
 
   discord.on('message', async (m: Message) => processMessage(m, false));
