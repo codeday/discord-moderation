@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Client as Discord, Message, PartialMessage } from 'discord.js';
 import { PrismaClient } from '@prisma/client';
 import config from './config';

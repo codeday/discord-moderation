@@ -4,7 +4,7 @@ import { config as loadEnv } from 'dotenv';
 loadEnv();
 
 const config = {
-  debug: process.env.NODE_ENV !== 'production' || process.env.DEBUG === 'true',
+  debug: process.env.NODE_ENV !== 'production' || process.env.DEBUG_LOGS === 'true',
   supportEmail: process.env.SUPPORT_EMAIL,
   imageExtensions: ['gif', 'jpg', 'jpeg', 'png', 'webp'],
   discord: {
