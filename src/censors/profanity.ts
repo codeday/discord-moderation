@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import unhomoglyph from 'unhomoglyph';
+import { remove } from 'confusables';
 import Filter from 'bad-words';
 import config from '../config';
 import { offensive, adult } from '../lib/swears';
@@ -10,7 +10,7 @@ filterOffensive.addWords(...offensive);
 filterAdult.addWords(...adult);
 
 export default async function censorText(m: Message): Promise<number | boolean> {
-  const effectiveContent = unhomoglyph(m.content)
+  const effectiveContent = remove(m.content)
     .toLowerCase()
     .replace(/-/g, ' ')
     .replace(/_/g, ' ')
@@ -22,8 +22,18 @@ export default async function censorText(m: Message): Promise<number | boolean> 
     .replace(/!/g, 'i')
     .replace(/\+/g, 't');
 
+  if (config.debug) console.log(effectiveContent);
+
   const hasOffensive = filterOffensive.isProfane(effectiveContent);
   const hasAdult = filterAdult.isProfane(effectiveContent);
+
+  if (hasOffensive) {
+    console.log('cleaned offensive content:', filterOffensive.clean(effectiveContent));
+  }
+
+  if (hasAdult) {
+    console.log('cleaned adult content:', filterAdult.clean(effectiveContent));
+  }
 
   if (!hasOffensive && !hasAdult) return false;
   return Math.max(
