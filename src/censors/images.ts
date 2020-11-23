@@ -19,7 +19,7 @@ export default async function censorText(m: Message): Promise<number | boolean> 
 
   const scores = <number[]>nonNullResults
     .map((r: SightEngineResponse): number | boolean => {
-      if (r.offensive.prob > 0.5) return config.points.offensiveImage;
+      if (r.offensive.prob > config.imageDetectionThreshold) return config.points.offensiveImage;
       return false;
     })
     .filter((r) => r !== false);

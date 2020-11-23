@@ -7,6 +7,7 @@ const config = {
   debug: process.env.NODE_ENV !== 'production' || process.env.DEBUG_LOGS === 'true',
   supportEmail: process.env.SUPPORT_EMAIL,
   imageExtensions: ['gif', 'jpg', 'jpeg', 'png', 'webp'],
+  imageDetectionThreshold: Number.parseFloat(process.env.IMAGE_DETECTION_THRESHOLD || '0.5'),
   discord: {
     botToken: <string>process.env.DISCORD_BOT_TOKEN,
     guild: <string>process.env.DISCORD_GUILD,
