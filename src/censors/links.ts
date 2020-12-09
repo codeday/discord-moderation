@@ -32,16 +32,14 @@ export default async function censorText(m: Message): Promise<number | boolean> 
       resolvedUrl = await resolveRedirects(url);
     } catch (ex) {}
 
-    const [isUnsafe, isAdult, isDiscord] = await Promise.all([
+    const [isUnsafe, isDiscord] = await Promise.all([
       checkSafeBrowsing(resolvedUrl),
-      checkCategorization(resolvedUrl),
       checkIsDiscordLink(resolvedUrl),
     ]);
-    if (!isUnsafe && !isAdult && !isDiscord) return false;
+    if (!isUnsafe && !isDiscord) return false;
 
     return Math.max(
       isUnsafe ? config.points.dangerousLink : 0,
-      isAdult ? config.points.adultLink : 0,
       isDiscord ? config.points.inviteLink : 0,
     );
   }));
